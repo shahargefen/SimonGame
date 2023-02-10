@@ -1,0 +1,215 @@
+
+.App {
+  text-align: center;
+}
+
+.App-header {
+  background-color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+:root {
+  --background-color: black;
+  
+  --text-color: hsl(0, 0%, 100%);
+}
+
+.wrapper {
+  display: grid;
+  place-content: center;
+  background-color: var(--background-color);
+  min-height: 50vh;
+  font-family: "Oswald", sans-serif;
+  font-size: 200px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-color);
+}
+
+.wrapper > div {
+  grid-area: 1/1/-1/-1;
+}
+
+.top {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+}
+.bottom {
+  clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+  color: transparent;
+  background: -webkit-linear-gradient(177deg, black 53%, var(--text-color) 65%);
+  background: linear-gradient(177deg, black 53%, var(--text-color) 65%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  transform: translateX(-0.02em);
+}
+.simon
+  {
+      height: auto;
+      min-height: 100%;
+      font-style: Monospace;
+      background-color: black;
+      color: white;
+      text-align: center;
+      font-size: 35px;
+
+  }
+
+
+.startbutton{
+  font-style: Monospace;
+  background-color: black;
+color: white;
+padding: 1% 4% 1% 4%;
+text-decoration: none;
+margin: 1% 1%;
+cursor: pointer;
+font-size: 100px;
+  text-align: center;
+}
+
+.endbutton{
+  font-style: Monospace;
+  background-color: black;
+color: white;
+padding: 1% 4% 1% 4%;
+text-decoration: none;
+margin: 1% 1%;
+cursor: pointer;
+font-size: 50px;
+text-align: center;
+
+position:relative;
+
+}
+
+
+.colorButton {
+  height: 200px;
+  width: 200px;
+}
+
+
+.circleColor{
+  display: flex;
+  width: 400px;
+  flex-wrap: wrap;
+}
+
+
+.score {
+  position: left;
+  width: 400px;
+  background-color: black;
+  border-radius: 50%;
+  font-size: 50px;
+}
+
+
+.lost {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-color: black;
+  border-radius: 50%;
+  line-height: 100px;
+  font-size: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.flash.flash {
+  border: 3px solid black;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+
+
+
+.red {
+  background-color: red;
+  left:15px;
+  top:15px;
+  -webkit-border-radius:320px 20px 20px;
+  -moz-border-radius:320px 20px 20px;
+  -o-border-radius:320px 20px 20px;
+  border-radius:320px 20px 20px;
+  &.flash {
+    background-color: rgb(255, 204, 203);
+    left:15px;
+    top:15px;
+    -webkit-border-radius:320px 20px 20px;
+    -moz-border-radius:320px 20px 20px;
+    -o-border-radius:320px 20px 20px;
+    border-radius:320px 20px 20px;
+  }
+}
+
+
+.green {
+  background-color: green;
+  right:15px;
+  top:15px;
+  -webkit-border-radius:20px 320px 20px 20px;
+  -moz-border-radius:20px 320px 20px 20px;
+  -o-border-radius:20px 320px 20px 20px;
+  border-radius:20px 320px 20px 20px;
+  &.flash {
+    background-color: lightgreen;
+    right:15px;
+    top:15px;
+    -webkit-border-radius:20px 320px 20px 20px;
+    -moz-border-radius:20px 320px 20px 20px;
+    -o-border-radius:20px 320px 20px 20px;
+    border-radius:20px 320px 20px 20px;
+  }
+}
+
+.yellow {
+  background-color: yellow;
+  left:15px;
+  top:15px;
+  -webkit-border-radius:20px 20px 20px 320px;
+  -moz-border-radius:20px 20px 20px 320px;
+  -o-border-radius:20px 20px 20px 320px;
+  border-radius:20px 20px 20px 320px;
+  &.flash {
+    background-color: lightyellow;
+    left:15px;
+    top:15px;
+    -webkit-border-radius:20px 20px 20px 320px;
+    -moz-border-radius:20px 20px 20px 320px;
+    -o-border-radius:20px 20px 20px 320px;
+    border-radius:20px 20px 20px 320px;
+  }
+}
+
+  .blue {
+    background-color: blue;
+    -webkit-border-radius:20px 20px 320px 20px;
+    -moz-border-radius:20px 20px 320px 20px;
+    -o-border-radius:20px 20px 320px 20px;
+    border-radius:20px 20px 320px 20px;
+
+    &.flash {
+      background-color: lightblue;
+      -webkit-border-radius:20px 20px 320px 20px;
+      -moz-border-radius:20px 20px 320px 20px;
+      -o-border-radius:20px 20px 320px 20px;
+      border-radius:20px 20px 320px 20px;
+  
+    }
+  }
+  
