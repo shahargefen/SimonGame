@@ -1,6 +1,8 @@
 import {useState,useEffect,useRef} from "react";
 import Buttons from './components/Buttons';
 import './App.scss';
+import axios from "axios";
+
 
 
 function App() {
@@ -13,7 +15,6 @@ function App() {
   const greenAudioRef = useRef(new Audio('https://s3.amazonaws.com/freecodecamp/simonSound2.mp3'));
   const yellowAudioRef = useRef(new Audio('https://s3.amazonaws.com/freecodecamp/simonSound3.mp3'));
   const blueAudioRef = useRef(new Audio('https://s3.amazonaws.com/freecodecamp/simonSound4.mp3'));
-  const sounds = [redAudioRef, greenAudioRef, yellowAudioRef, blueAudioRef];
 
 
 
@@ -22,7 +23,6 @@ function App() {
     display:boolean,
     colors:string[],
     score:number,
-    highest:number,
     userPlay:boolean,
     userColors:string[]
 
@@ -33,33 +33,40 @@ function App() {
     display:false,
     colors:[],
     score:0,
-    highest:highScore,
     userPlay:false,
     userColors:[]
 };
 
-//Highest scor local storeage get
-useEffect(() => {
-  let highest = localStorage.getItem("highestScore");
-  if (highest) {
-    setHighScore(+highest);
-  }
-}, []);
+
 
 const [isOn,setIsOn] = useState(false);
 const [play,setPlay]=useState(startplay);
 const [flashColor, setFlashColor] = useState("")
+const [userName, setUserName] = useState("");
+var topTable:string;
 
 //Function to start the game
-function start(){
+async function start(){
   setIsOn(true);
-}
+   await axios.post("http://localhost:5000/start",  { userName: userName }).then(response => {
+    topTable=response.data.text;
+    console.log(topTable);
+    setHighScore(+topTable);
+
+
+    });
+  }
 
 //Function to end the game
-function end() {
+async function end() {
   if(!play.display){
-   setIsOn(false);
-  }
+    setIsOn(false);
+    await axios.post("http://localhost:5000/end", {userName: userName, score: String(play.score)}).then(response => {
+
+
+  });
+
+}
 }
 
 //Display the game when the game is on
@@ -173,13 +180,11 @@ async function colorClick(color:string){
               await timeout(100);
               if(highScore<=play.score){
                 setHighScore(play.colors.length);
-                localStorage.setItem("highestScore", play.colors.length.toString());
                 setPlay({
                   ...play,
                   display:true,
                   userPlay:false,
                   score:play.colors.length,
-                  highest:play.colors.length,
                   userColors:[]})
               }
               else{
@@ -224,6 +229,7 @@ async function colorClick(color:string){
     {isOn && !play.display && !play.userPlay && (
       <div className="lost">
         <div>FinalScore: {play.score}</div>
+        
         <button onClick={end}>Close</button>
       </div>
     )}
@@ -236,14 +242,19 @@ async function colorClick(color:string){
       Do what Simon Says...<br />
       Follow the pattern of lights and sounds<br />
       for as long as you can... if you can!<br /><br />
+      <form>
+        <label htmlFor="username">Enter your name:</label>
+        <input type="text" id="username" value={userName} onChange={e => setUserName(e.target.value)} />
+      </form>
       <button onClick={start} className="startbutton">:: play ::</button>
       </div>]
 
     )}
         {isOn && (play.display || play.userPlay) && (
       [<div className="score">score: {play.score}</div>,
-      <div className="score">highest: {play.highest}</div>,
-      <button onClick={end} className="endbutton">quit</button>]
+      <div className="score">highest: {highScore}</div>,
+      <div className="score">name: {userName} </div>,
+         <button onClick={end} className="endbutton">quit</button>]
 
     )}
     </header>
