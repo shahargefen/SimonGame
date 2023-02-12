@@ -1,16 +1,9 @@
-After donwload install npm by. npm install. and after this run the code by. npm start.
-
-If you have the problem: (node:17948) [DEP_WEBPACK_DEV_SERVER_ON_AFTER_SETUP_MIDDLEWARE] DeprecationWarning: 'onAfterSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
-(Use node --trace-deprecation ... to show where the warning was created) (node:17948) [DEP_WEBPACK_DEV_SERVER_ON_BEFORE_SETUP_MIDDLEWARE] DeprecationWarning: 'onBeforeSetupMiddleware' option is deprecated. Please use the 'setupMiddlewares' option.
-
-Then:
-
-1 - run npm run build : this will create a build directory with a production build of your app
-
-2- run npm install -g serve : to serve your build directory with a static server .
-
-3 - run npx serve -s build instead of npm start
-
+After donwload install npm by: 
+npm install
+and after this run the code by:
+npm start
+for the server side:
+run npm run start_server
 
 # Getting Started with Create React App
 
